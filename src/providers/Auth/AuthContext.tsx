@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }: AuthProps) => {
   const logout = () => {
     localStorage.clear();
     setAuthToken("");
-    navigate("/");
+    navigate("/home");
   };
 
   return (

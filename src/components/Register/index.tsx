@@ -154,7 +154,7 @@ const Register = () => {
               color="gray.300"
               h="60px"
               borderRadius="8px"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/login")}
               _hover={{
                 background: "gray.200",
               }}
