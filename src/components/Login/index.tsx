@@ -9,11 +9,9 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useAuth } from "../../providers/Auth/AuthContext";
-import { useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as React from "react";
 import logo from "../../assets/imgs/logo.png";
 import { DeepMap, FieldError, UseFormRegister } from "react-hook-form";
 import { FieldValues } from "react-hook-form";
@@ -22,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 
 interface FormProps {
-  handleForm: () => void;
+  handleForm: (userData: LoginData) => void;
   errors: DeepMap<FieldValues, FieldError>;
   register: UseFormRegister<FieldValues>;
 }
@@ -57,10 +55,9 @@ const Login = () => {
   });
 
   const handleForm = (
-    event: React.FormEvent<HTMLFormElement>,
     userData: LoginData
   ) => {
-    event.preventDefault();
+    console.log(userData)
     login(userData);
   };
 
@@ -72,21 +69,23 @@ const Login = () => {
         justifyContent="center"
         height={["auto", "auto", "100vh", "100vh"]}
         color="white"
+        flexDirection={['column', 'column', 'row', 'row']}
       >
         <Grid
-          onSubmit={() => handleForm}
           as="form"
-          padding="30px 15px"
-          bg="white"
+          onSubmit={handleSubmit(handleForm)}
+          id= 'login_Form'
+          padding="20px 15px"
           mt={["4", "4", "0"]}
           w={["100%", "100%", "40%", "40%"]}
         >
-          <Heading size="sm" color="gray.600">
+          <Heading size="md" color="gray.600">
             Login
           </Heading>
-          <VStack mt="6" spacing="5">
+          <VStack mt="6" spacing="4">
             <Box w="90%">
               <Input
+                label="Email"
                 placeholder="Digite seu email"
                 type="email"
                 error={errors.email}
@@ -95,6 +94,7 @@ const Login = () => {
                 mb="8px"
               />
               <Input
+                label="Senha"
                 type="password"
                 placeholder="Digite sua senha"
                 error={errors.password}
@@ -102,20 +102,21 @@ const Login = () => {
                 {...register("password")}
                 mt="5px"
               />
+              {/* {!errors.email && <Text ml="1" mt='1' color='gray.300 '>email@eaxmle.com</Text>} */}
             </Box>
           </VStack>
           <VStack mt="4" spacing="5">
             <Button
-              onClick={() => login}
-              bg="green.primary"
+              bg="blue.information"
               w="90%"
-              color="white"
+              color="black"
               h="60px"
-              borderRadius="8px"
+              borderRadius="10px"
               _hover={{
-                background: "green.primary50",
+                bgColor: "green.primary50",
               }}
               type="submit"
+              form='login_Form'
             >
               Logar
             </Button>
@@ -137,12 +138,12 @@ const Login = () => {
             </Button>
           </VStack>
         </Grid>
-
         <Flex
           w={["100%", "100%", "90%", "65%"]}
           justifyContent="center"
           flexDirection={["column", "column", "column", "column"]}
-          alignItems="center"
+          alignItems="flex-start"
+          ml='10'
         >
           <Box w={["100%", "100%", "50%", "50%"]} paddingRight="100px">
             <Image
@@ -164,6 +165,17 @@ const Login = () => {
               </Text>
             </Heading>
           </Box>
+          <Grid templateColumns="repeat(6, 3fr)" gap={6} mt="5" w="20%" >
+        {Array.from({ length: 18 }).map((_, i) => (
+          <Box
+            borderRadius="10px"
+            bg="gray.100"
+            h="11px"
+            w="11px"
+            key={i}
+          />
+        ))}
+      </Grid>
         </Flex>
       </Flex>
     </>

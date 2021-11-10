@@ -2,54 +2,48 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
-interface AuthProps {
+interface AuthProviderProps {
   children: ReactNode;
 }
 
 interface AuthProviderData {
-  login: (userData:usrDataLogin) => void;
+  login:  ({ email, password }: User) => void;
   logout: () => void;
   authToken: string;
-  signUp: (userData:usrDataSignUp) => void;
+  signUp: (data: User) => void;
 }
 
-interface usrDataSignUp {
-    email: string;
-    password: string;
-    name: string;
-}
-
-interface usrDataLogin {
+interface User {
   email: string;
   password: string;
+  name?: string;
 }
 
 const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
 
-export const AuthProvider = ({ children }: AuthProps) => {
+const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const navigate = useNavigate();
   
-  const [authToken, setAuthToken] = useState(
-    () => localStorage.getItem("token") || ""
-  );
+  const [authToken, setAuthToken] = useState(localStorage.getItem("@tokenHamburkenzie") || "");
 
-  const login = (userData:usrDataLogin) => {
+  const login = ({ email, password }:User) => {
     api
-      .post("/users/login", userData)
+      .post("/login", {email, password})
       .then((response) => {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("@tokenHamburkenzie", response.data.accessToken);
         setAuthToken(response.data.token);
-        navigate("/home");
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
 
-  const signUp = (userData:usrDataSignUp) => {
+  const signUp = (userData:User) => {
+    console.log(userData)
     api
-      .post("/users/register", userData)
+      .post("/register", userData)
       .then((response) => {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("@tokenHamburkenzie", response.data.token);
         setAuthToken(response.data.token);
         navigate("/login");
       })
@@ -59,14 +53,16 @@ export const AuthProvider = ({ children }: AuthProps) => {
   const logout = () => {
     localStorage.clear();
     setAuthToken("");
-    navigate("/home");
+    navigate("/login");
   };
 
   return (
-    <AuthContext.Provider value={{ authToken, logout, login, signUp }}>
+    <AuthContext.Provider value={{authToken, logout, login, signUp }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+const useAuth = () => useContext(AuthContext)
+
+export {AuthProvider, useAuth }

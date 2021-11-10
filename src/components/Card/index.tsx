@@ -1,18 +1,30 @@
-import { Box, Button, Grid, Image } from "@chakra-ui/react";
+import { Box, Button, Grid, Image, Text } from "@chakra-ui/react";
 import { useProducts } from "../../providers/Products";
 
 const Card = () => {
   const { products } = useProducts();
 
   return (
-    <Grid padding='25px' templateColumns="repeat(4, 1fr)" gap={280}>
+    <Grid padding="20px" templateColumns="repeat(4, 1fr)" gap={90}>
       {products.map((item) => (
-        <Box w="100%" h="7">
-        <Image height='158px' widht='158px' src={item.image} alt={item.title}/>
-        <h2>{item.title}</h2>
-        <p>{item.category}</p>
-        <h3>{item.price.toFixed(2)}</h3>
-        <Button >Adicionar</Button>
+        <Box
+          borderRadius="5px"
+          border="1px solid"
+          borderColor="gray.300"
+          w="100%"
+          h="100%"
+          padding='40px'
+        >
+          <Image
+            height="158px"
+            widht="158px"
+            src={item.image}
+            alt={item.title}
+          />
+          <Text textAlign='center' fontWeight='bold'>{item.title}</Text>
+          <Text margin='5px'>{item.category}</Text>
+          <h3>Preço: <b>{item.price.toFixed(2)}</b></h3>
+          <Button >Adicionar</Button>
         </Box>
       ))}
     </Grid>

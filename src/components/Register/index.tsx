@@ -1,24 +1,27 @@
-import { Box, Button, Flex, Grid, Heading, Image, Text, useBreakpointValue, VStack } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { Box, Button, Flex, FormControl, Grid, Heading, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { DeepMap, FieldError, FieldValues, useForm, UseFormRegister } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../providers/Auth/AuthContext";
 import { Input } from "../Input";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as React from "react";
 import logo from "../../assets/imgs/logo.png";
-
+import { Link } from "@chakra-ui/react"
 
 interface FormData {
   email: string;
   password: string;
   name: string;
+  confirmPassword: string;
 }
 
-// interface totalData {
-//     data: FormData;
-//   }
+interface SignupData {
+  signUp: () => void;
+  errors: DeepMap<FieldValues, FieldError>;
+  register: UseFormRegister<FieldValues>;
+}
 
 const Register = () => {
 
@@ -48,14 +51,9 @@ const Register = () => {
     signUp(data)
   };
 
-  const isWideVersion = useBreakpointValue({
-    base: false,
-    md: true,
-  });
-
 
   return (
-    <>
+    <Flex>
      <Flex
           w={["100%", "100%", "90%", "65%"]}
           justifyContent="center"
@@ -92,28 +90,34 @@ const Register = () => {
         justifyContent="center"
         height={["auto", "auto", "100vh", "100vh"]}
         color="white"
-      >
-        <Grid
-          onSubmit={() => handleForm}
+        flexDirection='column'
+        >
+        <HStack spacing='250px'>
+          
+          <Heading size="sm" color="gray.600">
+            Cadastro
+          </Heading>handleForm
+          <Link text-decoration='underline'color="gray.300" href='/login'>
+            Retornar para o login
+          </Link>
+          </HStack>
+        <FormControl
           as="form"
+          onSubmit={handleSubmit(handleForm)}
+          id= 'register_Form'
           padding="30px 15px"
           bg="white"
           mt={["4", "4", "0"]}
-          w={["100%", "100%", "40%", "40%"]}
+          w={["100%", "100%", "100%", "100%"]}
         >
-          <Link to='/'>
-            Retornar para o login
-          </Link>
-          <Heading size="sm" color="gray.600">
-            Cadastro
-          </Heading>
+          
           <VStack mt="6" spacing="5">
             <Box w="90%">
               <Input
                 label="Nome"
                 placeholder="Digite seu nome"
                 type="text"
-                error={errors.email}
+                error={errors.name}
                 {...register("name")}
                 mb="8px"
               />
@@ -150,11 +154,13 @@ const Register = () => {
           
             <Button
               bg="gray.0"
+              type="submit"
+              form='register_Form'
               w={["200px", "452px"]}
               color="gray.300"
               h="60px"
               borderRadius="8px"
-              onClick={() => navigate("/login")}
+              onClick={() => signUp}
               _hover={{
                 background: "gray.200",
               }}
@@ -162,11 +168,10 @@ const Register = () => {
               Cadastrar
             </Button>
           </VStack>
-        </Grid>
-       
+        </FormControl>
       </Flex>
       </Grid>
-    </>
+    </Flex>
   );
 };
 

@@ -1,11 +1,14 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, Icon, Image} from "@chakra-ui/react";
 import logo from "../../assets/imgs/logo.png";
 import { Input } from "../Input";
-import { AiOutlineSearch } from "react-icons/ai";
 import Card from "../Card";
+import { FaSearch } from "react-icons/fa";
+import { useAuth } from "../../providers/Auth/AuthContext";
 
 
 const Home = () => {
+
+    const{ logout } = useAuth();
     return(
         <Flex flexDirection='column'>
             <Box>
@@ -13,7 +16,7 @@ const Home = () => {
                 width='160px'
                 height= '37px'
                 src={logo}
-                />
+                />     
                 <Input 
                 name ='teste'
                 placeholder ='Digitar pesquisa'
@@ -23,10 +26,13 @@ const Home = () => {
                 left = '800px'
                 border-radius = '8px'
                 padding ='[0px, 10px, 0px, 15px]'
-                icon={AiOutlineSearch}
-                bg='white'
+                bg ='white'
+                icon= {FaSearch}
             />
             </Box>
+            <Button onClick={logout}>
+            Logout
+            </Button>
             <Box>
                 <Card/>
             </Box>

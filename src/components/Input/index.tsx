@@ -6,14 +6,16 @@ import {
   InputProps as ChakraInputProps,
   InputLeftElement,
   InputGroup,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons/lib";
 import {
   useState,
-  useCallback,
+  useCallback,  
   useEffect,
   ForwardRefRenderFunction,
   forwardRef,
+  useRef,
 } from "react";
 
 interface InputProps extends ChakraInputProps {
@@ -30,7 +32,7 @@ type inputVariationOptions = {
 const inputVariation: inputVariationOptions = {
   error: "red.500",
   default: "gray.200",
-  focus: "purple.800",
+  focus: "gray.0",
   filled: "green.500",
 };
 
@@ -40,6 +42,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 ) => {
   const [value, setValue] = useState("");
   const [variation, setVariation] = useState("default");
+  // const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (error) {
@@ -69,14 +72,15 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
             <Icon />
           </InputLeftElement>
         )}
-
         <ChakraInput
           id={name}
-          type={name}
+          name={name}
+          onFocus={handleInputFocus}
+          onBlurCapture={handleInputBlur}
+          errorBorderColor="red.300"
           onChangeCapture={(e) => setValue(e.currentTarget.value)}
           borderColor={inputVariation[variation]}
           color='#333333'
-          bg="grey-0"
           variant="outline"
           _hover={{ bgColor: "gray.100" }}
           _placeholder={{ color: "gray.300" }}
@@ -84,10 +88,11 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
             bg: "gray.100",
           }}
           size="lg"
-          h="60px"
+          h="50px"
           ref={ref}
           {...rest}
         />
+        {!!error && <FormErrorMessage>{error.message}</FormErrorMessage>}
 
       </InputGroup>
     </FormControl>
