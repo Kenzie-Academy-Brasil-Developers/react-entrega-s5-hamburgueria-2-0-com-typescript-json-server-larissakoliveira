@@ -18,6 +18,7 @@ import { FieldValues } from "react-hook-form";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
+import { FiShoppingBag } from 'react-icons/fi';
 
 interface FormProps {
   handleForm: (userData: LoginData) => void;
@@ -54,10 +55,8 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const handleForm = (
-    userData: LoginData
-  ) => {
-    console.log(userData)
+  const handleForm = (userData: LoginData) => {
+    console.log(userData);
     login(userData);
   };
 
@@ -69,21 +68,22 @@ const Login = () => {
         justifyContent="center"
         height={["auto", "auto", "100vh", "100vh"]}
         color="white"
-        flexDirection={['column', 'column', 'row', 'row']}
+        flexDirection={["column", "column", "row", "row"]}
       >
         <Grid
           as="form"
           onSubmit={handleSubmit(handleForm)}
-          id= 'login_Form'
+          id="login_Form"
           padding="20px 15px"
           mt={["4", "4", "0"]}
           w={["100%", "100%", "40%", "40%"]}
+          marginLeft="100px"
         >
           <Heading size="md" color="gray.600">
             Login
           </Heading>
           <VStack mt="6" spacing="4">
-            <Box w="90%">
+            <Box w="100%">
               <Input
                 label="Email"
                 placeholder="Digite seu email"
@@ -107,16 +107,16 @@ const Login = () => {
           </VStack>
           <VStack mt="4" spacing="5">
             <Button
-              bg="blue.information"
-              w="90%"
-              color="black"
-              h="60px"
+              bg="#219653"
+              w={["200px", "100%"]}
+              color="#FFFFFF"
+              h="50px"
               borderRadius="10px"
               _hover={{
                 bgColor: "green.primary50",
               }}
               type="submit"
-              form='login_Form'
+              form="login_Form"
             >
               Logar
             </Button>
@@ -124,14 +124,14 @@ const Login = () => {
               Crie sua conta para saborear muitas delícias e matar sua fome!
             </Text>
             <Button
-              bg="gray.0"
-              w={["200px", "452px"]}
+              bg="gray.100"
+              w={["200px", "100%"]}
               color="gray.300"
-              h="60px"
+              h="50px"
               borderRadius="8px"
               onClick={() => navigate("/register")}
               _hover={{
-                background: "gray.200",
+                background: "gray.100",
               }}
             >
               Cadastrar
@@ -143,7 +143,7 @@ const Login = () => {
           justifyContent="center"
           flexDirection={["column", "column", "column", "column"]}
           alignItems="flex-start"
-          ml='10'
+          ml="10"
         >
           <Box w={["100%", "100%", "50%", "50%"]} paddingRight="100px">
             <Image
@@ -152,30 +152,38 @@ const Login = () => {
               w={["120px", "120px", "200px", "200px"]}
             />
           </Box>
-          <Box border="1px" borderColor="gray.400"  w={["100%", "100%", "50%", "50%"]} paddingRight="100px">
-            <Heading mt="4" as="h1">
+          <Box
+            border= "1px solid #E0E0E0"
+            w={["100%", "100%", "45%", "45%"]}
+            paddingRight="100px"
+            box-shadow= "0px 4px 40px -20px #00000040"
+            margin= "15px 0px"
+            borderRadius= "5px"
+          >
+            {/* <FiShoppingBag /> */}
               <Text
                 fontWeight="light"
                 color="gray.300"
                 fontSize="sm"
                 maxW="350px"
+                padding="10px"
               >
                 A vida é como um sanduíche, é preciso recheá-la com os{" "}
-                <b>melhores</b> ingredientes.
+                <strong>melhores</strong> ingredientes.
               </Text>
-            </Heading>
+          
           </Box>
-          <Grid templateColumns="repeat(6, 3fr)" gap={6} mt="5" w="20%" >
-        {Array.from({ length: 18 }).map((_, i) => (
-          <Box
-            borderRadius="10px"
-            bg="gray.100"
-            h="11px"
-            w="11px"
-            key={i}
-          />
-        ))}
-      </Grid>
+          <Grid templateColumns="repeat(6, 3fr)" gap={6} mt="5" w="20%">
+            {Array.from({ length: 18 }).map((_, i) => (
+              <Box
+                borderRadius="10px"
+                bg="gray.100"
+                h="11px"
+                w="11px"
+                key={i}
+              />
+            ))}
+          </Grid>
         </Flex>
       </Flex>
     </>

@@ -18,6 +18,8 @@ import {
   useRef,
 } from "react";
 
+
+
 interface InputProps extends ChakraInputProps {
   name: string;
   label?: string;
@@ -68,7 +70,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
       <InputGroup flexDirection="column">
         {Icon && (
-          <InputLeftElement color={inputVariation[variation]} mt="2.5">
+          <InputLeftElement color={inputVariation[variation]} >
             <Icon />
           </InputLeftElement>
         )}

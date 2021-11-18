@@ -32,7 +32,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       .post("/login", {email, password})
       .then((response) => {
         localStorage.setItem("@tokenHamburkenzie", response.data.accessToken);
-        setAuthToken(response.data.token);
+        setAuthToken(response.data.accessToken);
         navigate("/");
       })
       .catch((err) => console.log(err));
