@@ -19,6 +19,7 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { FiShoppingBag } from 'react-icons/fi';
+import ModalComponent from "../Modal";
 
 interface FormProps {
   handleForm: (userData: LoginData) => void;
@@ -69,6 +70,7 @@ const Login = () => {
         color="white"
         flexDirection={["column", "column", "row", "row"]}
       >
+        <ModalComponent/>
         <Grid
           as="form"
           onSubmit={handleSubmit(handleForm)}

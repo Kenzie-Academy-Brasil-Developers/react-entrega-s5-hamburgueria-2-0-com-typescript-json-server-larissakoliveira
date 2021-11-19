@@ -10,10 +10,8 @@ interface AppProviderProps {
 
 export const AppProvider = ({ children }: AppProviderProps) => (
   <ChakraProvider theme={theme}>
- <AuthProvider>
-    <ProductsProvider>
-      {children}
-    </ProductsProvider>
-  </AuthProvider>
+    <AuthProvider>
+      <ProductsProvider>{children}</ProductsProvider>
+    </AuthProvider>
   </ChakraProvider>
 );
