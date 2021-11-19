@@ -56,7 +56,6 @@ const Login = () => {
   });
 
   const handleForm = (userData: LoginData) => {
-    console.log(userData);
     login(userData);
   };
 

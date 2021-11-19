@@ -2,28 +2,22 @@ import {
   Box,
   Button,
   Flex,
-  FormControl,
   Grid,
   Heading,
   HStack,
   Image,
+  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import {
-  DeepMap,
-  FieldError,
-  FieldValues,
-  useForm,
-  UseFormRegister,
+  useForm
 } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAuth } from "../../providers/Auth/AuthContext";
 import { Input } from "../Input";
-import { FaEnvelope, FaLock } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import * as React from "react";
+import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import logo from "../../assets/imgs/logo.png";
 import { Link } from "@chakra-ui/react";
 
@@ -31,25 +25,17 @@ interface FormData {
   email: string;
   password: string;
   name: string;
-  confirmPassword: string;
-}
-
-interface SignupData {
-  signUp: () => void;
-  errors: DeepMap<FieldValues, FieldError>;
-  register: UseFormRegister<FieldValues>;
 }
 
 const Register = () => {
-  const navigate = useNavigate();
 
   const { signUp } = useAuth();
 
   const schema = yup.object().shape({
-    name: yup.string().required("Nome obrigatório"),
+    name: yup.string().required("Informe seu nome"),
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
-    password: yup.string().required("Senha obrigatória"),
-    confirm_password: yup
+    password: yup.string().min(6, "Minimo de 6 caracteres.").required("Senha obrigatória"),
+    confirmPassword: yup
       .string()
       .required("Confirmação de senha obrigatória")
       .oneOf([yup.ref("password")], "Senhas diferentes"),
@@ -58,18 +44,19 @@ const Register = () => {
   const {
     formState: { errors },
     register,
-    handleSubmit,
+    handleSubmit
   } = useForm({
     resolver: yupResolver(schema),
   });
 
   const handleForm = (data: FormData) => {
+    console.log(data)
     signUp(data);
   };
 
   return (
     <Flex>
-      <Flex
+      <Stack
         w={["100%", "100%", "90%", "65%"]}
         justifyContent="center"
         flexDirection={["column", "column", "column", "column"]}
@@ -92,7 +79,6 @@ const Register = () => {
             margin= "15px 0px"
             borderRadius= "5px"
           >
-               {/* <FiShoppingBag /> */}
               <Text
                 fontWeight="light"
                 color="gray.300"
@@ -115,9 +101,11 @@ const Register = () => {
               />
             ))}
           </Grid>
-      </Flex>
-        <Flex
-        mr='200px'
+      </Stack>
+        <Grid
+          mr='200px'
+          as="form"
+            onSubmit={handleSubmit(handleForm)}
           padding={["10px 15px", "10 15px", "0px", "0px"]}
           alignItems="center"
           justifyContent="flex-start"
@@ -129,15 +117,11 @@ const Register = () => {
             <Heading size="sm" color="gray.600">
               Cadastro
             </Heading>
-            handleForm
-            <Link text-decoration="underline" mr='60px' color="gray.300" href="/login">
+            <Link text-decoration="underline" mr='60px' color="gray.300" href="/">
               Retornar para o login
             </Link>
           </HStack>
-          <Grid
-            as="form"
-            onSubmit={handleSubmit(handleForm)}
-            id="register_Form"
+          <Stack
             padding="20px 15px"
             mt={["4", "4", "0"]}
             w={["100%", "100%", "100%", "100%"]}
@@ -152,6 +136,7 @@ const Register = () => {
                   error={errors.name}
                   {...register("name")}
                   mb="8px"
+                  icon={FaUser}
                 />
                 <Input
                   label="Email"
@@ -182,24 +167,25 @@ const Register = () => {
                 />
               </Box>
             </VStack>
-            <VStack mt="4" spacing="5">
-              <Button
+            <Box mt="4" spacing="5">
+            <Button
+              type="submit"
               bg="gray.100"
               w={["200px", "90%"]}
               color="gray.300"
               h="50px"
               borderRadius="8px"
-              onClick={() => signUp}
               _hover={{
                 background: "gray.100",
               }}
               >
                 Cadastrar
               </Button>
-            </VStack>
-          </Grid>
-        </Flex>
-      
+            </Box>
+        
+        </Stack>
+       
+        </Grid>
     </Flex>
   );
 };

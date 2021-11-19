@@ -6,9 +6,9 @@ import Register from "../components/Register";
 const Routes = () => {
   return (
     <Switch>
-       <Route path="/login" element={<Login/>}/>
+       <Route path="/" element={<Login/>}/>
        <Route path="/register" element={<Register/>}/>
-       <Route path="/" element={<Home/>}/>
+       <Route path="/home" element={<Home/>}/>
     </Switch>
   );
 };
