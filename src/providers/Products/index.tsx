@@ -12,17 +12,20 @@ interface ProductsProps {
 }
 
 interface ProductsInterface {
-  image: string;
   title: string;
+  image: string;
   category: string;
   price: number;
   id: number;
+  userId: number;
+  quantity: number;
+  total: number;
 }
+
 
 interface ProductsProviderData {
   products: ProductsInterface[];
   filteredProducts: ProductsInterface[];
-  cart: ProductsInterface[];
   productNameFiltered: (searchedProd: string) => void;
 }
 
@@ -31,6 +34,8 @@ const ProductsContext = createContext<ProductsProviderData>(
 );
 
 export const ProductsProvider = ({ children }: ProductsProps) => {
+
+
   const [products, setProducts] = useState<ProductsInterface[]>(
     [] as ProductsInterface[]
   );
@@ -39,9 +44,6 @@ export const ProductsProvider = ({ children }: ProductsProps) => {
     [] as ProductsInterface[]
   );
 
-  const [cart, setCart] = useState<ProductsInterface[]>(
-    [] as ProductsInterface[]
-  );
 
   useEffect(() => {
     api
@@ -59,7 +61,6 @@ export const ProductsProvider = ({ children }: ProductsProps) => {
     const filteredProducts = products.filter((product) =>
       product.title.toLowerCase().includes(searchedProd.toLowerCase())
     );
-    console.log(filteredProducts);
     setFilteredProducts(filteredProducts);
   };
 
@@ -67,7 +68,7 @@ export const ProductsProvider = ({ children }: ProductsProps) => {
 
   return (
     <ProductsContext.Provider
-      value={{ cart, products, filteredProducts, productNameFiltered }}
+      value={{ products, filteredProducts, productNameFiltered }}
     >
       {children}
     </ProductsContext.Provider>
