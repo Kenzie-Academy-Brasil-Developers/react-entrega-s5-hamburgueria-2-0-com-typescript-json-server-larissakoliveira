@@ -1,13 +1,16 @@
 import { Box, Button, Grid, Image, Text } from "@chakra-ui/react";
+import { useCart } from "../../providers/Cart";
 import { useProducts } from "../../providers/Products";
 
 const Card = () => {
-  const { products } = useProducts();
+  const { products, filteredProducts } = useProducts();
+  const { addToCart } = useCart();
 
   return (
-    <Grid padding="20px" templateColumns="repeat(4, 1fr)" gap={90}>
-      {products.map((item) => (
+    <Grid  marginTop='80px' padding="20px" templateColumns="repeat(4, 1fr)" gap={90}>
+      {products.map((item, index) => (
         <Box
+        key={index}
           borderRadius="5px"
           border="1px solid"
           borderColor="gray.300"
@@ -22,9 +25,9 @@ const Card = () => {
             alt={item.title}
           />
           <Text textAlign='center' fontWeight='bold'>{item.title}</Text>
-          <Text margin='5px'>{item.category}</Text>
+          <Text margin='5px'>{item.type}</Text>
           <h3>Preço: <b>{item.price.toFixed(2)}</b></h3>
-          <Button >Adicionar</Button>
+          <Button onClick={() => addToCart(item as any)}>Adicionar</Button>
         </Box>
       ))}
     </Grid>

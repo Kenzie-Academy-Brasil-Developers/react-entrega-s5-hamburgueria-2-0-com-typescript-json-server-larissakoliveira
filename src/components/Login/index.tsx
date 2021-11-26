@@ -8,7 +8,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useAuth } from "../../providers/Auth/AuthContext";
+import { useAuth } from "../../providers/Auth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -19,7 +19,8 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { FiShoppingBag } from 'react-icons/fi';
-import ModalComponent from "../Modal";
+
+
 
 interface FormProps {
   handleForm: (userData: LoginData) => void;
@@ -60,6 +61,8 @@ const Login = () => {
     login(userData);
   };
 
+
+
   return (
     <>
       <Flex
@@ -70,10 +73,10 @@ const Login = () => {
         color="white"
         flexDirection={["column", "column", "row", "row"]}
       >
-        <ModalComponent/>
         <Grid
           as="form"
           onSubmit={handleSubmit(handleForm)}
+          data-testid="formTestId"
           id="login_Form"
           padding="20px 15px"
           mt={["4", "4", "0"]}
@@ -93,6 +96,7 @@ const Login = () => {
                 icon={FaEnvelope}
                 {...register("email")}
                 mb="8px"
+                data-testid="userNameTestId"
               />
               <Input
                 label="Senha"
@@ -101,6 +105,7 @@ const Login = () => {
                 error={errors.password}
                 icon={FaLock}
                 {...register("password")}
+                data-testid="passwordTestId"
                 mt="5px"
               />
               {/* {!errors.email && <Text ml="1" mt='1' color='gray.300 '>email@eaxmle.com</Text>} */}
@@ -161,7 +166,7 @@ const Login = () => {
             margin= "15px 0px"
             borderRadius= "5px"
           >
-            {/* <FiShoppingBag /> */}
+            <FiShoppingBag color='green' />
               <Text
                 fontWeight="light"
                 color="gray.300"

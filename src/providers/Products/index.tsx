@@ -63,9 +63,7 @@ export const ProductsProvider = ({ children }: ProductsProps) => {
     setFilteredProducts(filteredProducts);
   };
 
-  const addToCart = () => {
-    //setCart('')
-  };
+  
 
   return (
     <ProductsContext.Provider

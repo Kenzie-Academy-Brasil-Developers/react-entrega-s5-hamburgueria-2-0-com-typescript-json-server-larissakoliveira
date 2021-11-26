@@ -1,9 +1,13 @@
 import Login from "../components/Login";
-import { Route, Routes as Switch} from "react-router";
+import { Routes as Switch} from "react-router";
 import Home from "../components/Home";
 import Register from "../components/Register";
+import { Route } from "react-router";
+
+
 
 const Routes = () => {
+
   return (
     <Switch>
        <Route path="/" element={<Login/>}/>

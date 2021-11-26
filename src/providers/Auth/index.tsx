@@ -12,6 +12,8 @@ interface AuthProviderData {
   logout: () => void;
   authToken: string;
   signUp: (data: User) => void;
+  user: any;
+  userId: any;
 }
 
 interface User {
@@ -28,20 +30,25 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const navigate = useNavigate();
   
-  const [authToken, setAuthToken] = useState(localStorage.getItem("@hamburkenzie:accessToken") || "");
+  const [authToken, setAuthToken] = useState<string>(localStorage.getItem("@hamburkenzie:accessToken") || "");
+  const [userId, setUserId] = useState(localStorage.getItem("@hamburkenzie:userId")) || "";
   const [user, setUser] = useState(localStorage.getItem("@hamburkenzie:user")) || "";
+
+
 
   const login = ({ email, password }:User) => {
     api
       .post("/login", {email, password})
       .then((response) => {
         localStorage.setItem("@hamburkenzie:accessToken", response.data.accessToken);
+        localStorage.setItem("@hamburkenzie:userId", JSON.stringify(response.data.user.id))
         localStorage.setItem("@hamburkenzie:user", JSON.stringify(response.data.user))
         setAuthToken(response.data.accessToken);
         setUser(response.data.user);
+        setUserId(response.data.user.id)
         toast({
           title: "Login feito com sucesso!",
-          description: "Bem-vindo ao Cookin'",
+          description:  `Bem vindx, ${response.data.user.name}!`,
           status: "success",
           duration: 2000,
           isClosable: true,
@@ -53,7 +60,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const signUp = (userData:User) => {
-    console.log(userData)
     api
       .post("/register", userData)
       .then((response) => {
@@ -87,7 +93,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{authToken, logout, login, signUp }}>
+    <AuthContext.Provider value={{authToken, logout, login, signUp, user, userId }}>
       {children}
     </AuthContext.Provider>
   );

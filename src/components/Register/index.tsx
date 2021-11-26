@@ -15,7 +15,7 @@ import {
 } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAuth } from "../../providers/Auth/AuthContext";
+import { useAuth } from "../../providers/Auth";
 import { Input } from "../Input";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import logo from "../../assets/imgs/logo.png";
