@@ -25,7 +25,7 @@ const Card = () => {
             alt={item.title}
           />
           <Text textAlign='center' fontWeight='bold'>{item.title}</Text>
-          <Text margin='5px'>{item.type}</Text>
+          <Text margin='5px'>{item.category}</Text>
           <h3>Preço: <b>{item.price.toFixed(2)}</b></h3>
           <Button onClick={() => addToCart(item as any)}>Adicionar</Button>
         </Box>

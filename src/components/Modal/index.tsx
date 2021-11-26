@@ -24,7 +24,7 @@ import { AiOutlineMinusCircle } from "react-icons/ai"
 
 const ModalComponent = () => {
 
-  const { cart, removeAllFromCart, removeItem } = useCart()
+  const { cart, subItemCart, removeAllFromCart, removeItem, addItemCart } = useCart()
   const { user } = useAuth()
 
 
@@ -47,9 +47,9 @@ const ModalComponent = () => {
         <Box>
       <Heading fontSize='21px'>{item.title}</Heading>
       <Flex>
-      <AiOutlinePlusCircle  cursor='pointer' size='0.2x' color='green'/>
-      <p>quantidade</p>
-      <AiOutlineMinusCircle  cursor='pointer'size='0.2x' color='red'/>
+      <AiOutlinePlusCircle onClick={()=>addItemCart(item)} cursor='pointer' size='0.2x' color='green'/>
+      <Heading font-size='20px'color='black'>{item.quantity}</Heading>
+      <AiOutlineMinusCircle onClick={()=>subItemCart(item)} cursor='pointer'size='0.2x' color='red'/>
       </Flex>
       </Box>
       <BiTrash cursor='pointer' size='0.2x' color='gray' onClick={()=>removeItem(item.id)}/>

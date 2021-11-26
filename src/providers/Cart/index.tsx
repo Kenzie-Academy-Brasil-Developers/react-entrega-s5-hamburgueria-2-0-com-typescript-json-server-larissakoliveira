@@ -34,6 +34,8 @@ interface CartProviderData {
   removeAllFromCart: () => void;
   getCart: () => void;
   removeItem: (item:number) => void;
+  subItemCart: (item:CartProductsData) => void;
+  addItemCart: (item:CartProductsData) => void;
 }
 
 const CartContext = createContext<CartProviderData>({} as CartProviderData);
@@ -52,6 +54,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
     [] as CartProductsData[]
   );
 
+console.log(cart)
 
   const getCart = useCallback(() => {
     api
@@ -71,7 +74,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
   }, [getCart]);
 
   const addToCart = (product: CartProductsData) => {
-    const productWithUserId = { ...product, userId };
+    const productWithUserId = { ...product, userId, "quantity": 1 };
     if (cart.every((item) => item.id !== product.id)) {
       api
         .post("/cart", productWithUserId, {
@@ -121,7 +124,50 @@ const CartProvider = ({ children }: CartProviderProps) => {
       .catch((err) => console.log(err));
     }
 
-  
+    const subItemCart = (item:CartProductsData) => {
+      if(item.quantity > 1){
+
+        api.patch(`/cart/${item.id}`, {quantity: item.quantity - 1},{
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        })
+        .then(() => {
+          getCart()
+        toast({
+          position: "top",
+          description: "Produto removido",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+       }) 
+       .catch((err) => console.log(err));
+      }else {
+        removeItem(item.id)
+      }
+    };
+
+
+    const addItemCart = (item:CartProductsData) => {
+        api.patch(`/cart/${item.id}`, {quantity: item.quantity + 1},{
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        })
+        .then(() => {
+          getCart()
+        toast({
+          position: "top",
+          description: "Produto removido",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+       }) 
+       .catch((err) => console.log(err));
+    
+    };
 
   const removeAllFromCart = () => {
     cart.map((item)=> {      
@@ -147,7 +193,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
   }
   
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeAllFromCart, getCart, removeItem }}>
+    <CartContext.Provider value={{ cart, addToCart, removeAllFromCart, getCart, removeItem, subItemCart, addItemCart }}>
       {children}
     </CartContext.Provider>
   );
