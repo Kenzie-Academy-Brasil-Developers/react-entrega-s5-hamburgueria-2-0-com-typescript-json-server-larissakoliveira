@@ -31,11 +31,11 @@ import profilePic from "../../assets/imgs/garfieldProfile.png"
 const Home = () => {
 
 
-  const [inputValue, setInputValue] = useState("");
+  
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
-  const { productNameFiltered } = useProducts();
+  const { productNameFiltered, inputValue, setInputValue } = useProducts();
 
   const { logout, user, authToken } = useAuth();
 
@@ -84,7 +84,7 @@ const Home = () => {
 
         <ModalComponent />
         <Button ml='50px' padding="2px" colorScheme="white" onClick={onOpen}>
-          <HiOutlineLogout size="2x" color={theme.colors.green.primary50} />
+          <HiOutlineLogout size='35px'color={theme.colors.green.primary50} />
         </Button>
             </Flex>
         <Drawer placement="top" onClose={onClose} isOpen={isOpen}>

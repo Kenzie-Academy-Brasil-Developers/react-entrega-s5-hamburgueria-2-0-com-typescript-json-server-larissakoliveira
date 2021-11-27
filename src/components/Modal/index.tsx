@@ -40,9 +40,9 @@ const ModalComponent = () => {
     <>
       <Button onClick={onOpen}>
         <Box w='20px'>
-        <FaShoppingCart color="gray" />{" "}
+        <FaShoppingCart size='23px'color="gray" />{" "}
         </Box>
-        <Text fontWeight='bold' color={theme.colors.green.primary50} fontSize="17px">{totalItems}</Text>
+        <Text fontWeight='bold' ml='5px'marginBottom='17px' color={theme.colors.green.primary50} fontSize="16px">{totalItems}</Text>
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>

@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import api from "../../services/api";
+import React, { SetStateAction } from 'react';
 
 interface ProductsProps {
   children: ReactNode;
@@ -27,6 +28,8 @@ interface ProductsProviderData {
   products: ProductsInterface[];
   filteredProducts: ProductsInterface[];
   productNameFiltered: (searchedProd: string) => void;
+  inputValue: string;
+  setInputValue: React.Dispatch<SetStateAction<string>>;
 }
 
 const ProductsContext = createContext<ProductsProviderData>(
@@ -44,7 +47,9 @@ export const ProductsProvider = ({ children }: ProductsProps) => {
     [] as ProductsInterface[]
   );
 
+  const [inputValue, setInputValue] = useState("");
 
+  console.log(inputValue)
   useEffect(() => {
     api
       .get("/products")
@@ -62,13 +67,14 @@ export const ProductsProvider = ({ children }: ProductsProps) => {
       product.title.toLowerCase().includes(searchedProd.toLowerCase())
     );
     setFilteredProducts(filteredProducts);
+    setInputValue("")
   };
 
 
 
   return (
     <ProductsContext.Provider
-      value={{ products, filteredProducts, productNameFiltered }}
+      value={{ inputValue, setInputValue, products, filteredProducts, productNameFiltered }}
     >
       {children}
     </ProductsContext.Provider>
