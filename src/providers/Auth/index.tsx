@@ -56,7 +56,17 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         });
         navigate("/home");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        toast({
+          title: "Login inválido!",
+          description: "Usuário não existente!",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+          position: "top-right",
+        });
+      });
   };
 
   const signUp = (userData:User) => {

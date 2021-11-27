@@ -33,9 +33,6 @@ interface LoginData {
   password: string;
 }
 
-// interface form {
-//   onSubmit: () => void;
-// }
 
 const Login = () => {
   const navigate = useNavigate();
@@ -76,17 +73,16 @@ const Login = () => {
         <Grid
           as="form"
           onSubmit={handleSubmit(handleForm)}
-          data-testid="formTestId"
           id="login_Form"
           padding="20px 15px"
           mt={["4", "4", "0"]}
-          w={["100%", "100%", "40%", "40%"]}
+          w={["100%", "100%", "50%", "50%"]}
           marginLeft="100px"
         >
           <Heading size="md" color="gray.600">
             Login
           </Heading>
-          <VStack mt="6" spacing="4">
+          <VStack mt="6" spacing="5">
             <Box w="100%">
               <Input
                 label="Email"
@@ -95,10 +91,9 @@ const Login = () => {
                 error={errors.email}
                 icon={FaEnvelope}
                 {...register("email")}
-                mb="8px"
                 data-testid="userNameTestId"
               />
-              <Input
+              <Input 
                 label="Senha"
                 type="password"
                 placeholder="Digite sua senha"
@@ -106,7 +101,6 @@ const Login = () => {
                 icon={FaLock}
                 {...register("password")}
                 data-testid="passwordTestId"
-                mt="5px"
               />
               {/* {!errors.email && <Text ml="1" mt='1' color='gray.300 '>email@eaxmle.com</Text>} */}
             </Box>
@@ -132,12 +126,12 @@ const Login = () => {
             <Button
               bg="gray.100"
               w={["200px", "100%"]}
-              color="gray.300"
+              color="gray.600"
               h="50px"
               borderRadius="8px"
               onClick={() => navigate("/register")}
               _hover={{
-                background: "gray.100",
+                background: "gray.200",
               }}
             >
               Cadastrar
@@ -149,7 +143,7 @@ const Login = () => {
           justifyContent="center"
           flexDirection={["column", "column", "column", "column"]}
           alignItems="flex-start"
-          ml="10"
+          marginLeft="100px"
         >
           <Box w={["100%", "100%", "50%", "50%"]} paddingRight="100px">
             <Image
@@ -158,15 +152,18 @@ const Login = () => {
               w={["120px", "120px", "200px", "200px"]}
             />
           </Box>
-          <Box
+          <Flex
             border= "1px solid #E0E0E0"
-            w={["100%", "100%", "45%", "45%"]}
-            paddingRight="100px"
-            box-shadow= "0px 4px 40px -20px #00000040"
+            w={["100%", "100%", "50%", "50%"]}
+            boxShadow= "0px 4px 40px -20px #00000040"
             margin= "15px 0px"
             borderRadius= "5px"
+            alignItems= "center"
+            padding='5px'
           >
-            <FiShoppingBag color='green' />
+            <Box marginLeft='10px' borderRadius= "5px" backgroundColor= "#27AE601A" w='100px' h='50px'>
+            <FiShoppingBag size='1x' color='green' />
+            </Box>
               <Text
                 fontWeight="light"
                 color="gray.300"
@@ -178,7 +175,7 @@ const Login = () => {
                 <strong>melhores</strong> ingredientes.
               </Text>
           
-          </Box>
+          </Flex>
           <Grid templateColumns="repeat(6, 3fr)" gap={6} mt="5" w="20%">
             {Array.from({ length: 18 }).map((_, i) => (
               <Box

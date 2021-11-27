@@ -53,8 +53,8 @@ const CartProvider = ({ children }: CartProviderProps) => {
   const [cart, setCart] = useState<CartProductsData[]>(
     [] as CartProductsData[]
   );
-
 console.log(cart)
+
 
   const getCart = useCallback(() => {
     api
@@ -75,11 +75,12 @@ console.log(cart)
 
   const addToCart = (product: CartProductsData) => {
     const productWithUserId = { ...product, userId, "quantity": 1 };
+    console.log(productWithUserId);
     if (cart.every((item) => item.id !== product.id)) {
       api
         .post("/cart", productWithUserId, {
           headers: {
-            Authorization: `Bearer ${authToken}`,
+            Authorization: `Bearer ${authToken}`, 
           },
         })
         .then(() => {

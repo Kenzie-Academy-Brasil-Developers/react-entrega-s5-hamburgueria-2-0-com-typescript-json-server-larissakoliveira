@@ -43,7 +43,6 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 ) => {
   const [value, setValue] = useState("");
   const [variation, setVariation] = useState("default");
-  // const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (error) {
@@ -65,11 +64,11 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   return (
     <FormControl isInvalid={!!error}>
-      {!!label && <FormLabel color="gray.400">{label}</FormLabel>}
+      {!!label && <FormLabel marginBottom='0px' marginTop='10px' color="gray.400">{label}</FormLabel>}
 
       <InputGroup flexDirection="column">
         {Icon && (
-          <InputLeftElement color={inputVariation[variation]} >
+          <InputLeftElement marginTop='8px' color={inputVariation[variation]} >
             <Icon />
           </InputLeftElement>
         )}
@@ -93,7 +92,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           ref={ref}
           {...rest}
         />
-        {!!error && <FormErrorMessage>{error.message}</FormErrorMessage>}
+        {!!error && <FormErrorMessage margin="0px">{error.message}</FormErrorMessage>}
 
       </InputGroup>
     </FormControl>
