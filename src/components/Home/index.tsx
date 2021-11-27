@@ -24,10 +24,11 @@ import { useAuth } from "../../providers/Auth";
 import ModalComponent from "../Modal";
 import { theme } from "../../styles/theme";
 import { useProducts } from "../../providers/Products";
-import React, { useState } from "react";
+import { useState } from "react";
+import { Navigate } from "react-router";
 
 const Home = () => {
-  const btnRef = React.useRef();
+
 
   const [inputValue, setInputValue] = useState("");
 
@@ -35,7 +36,14 @@ const Home = () => {
 
   const { productNameFiltered } = useProducts();
 
-  const { logout, user } = useAuth();
+  const { logout, user, authToken } = useAuth();
+
+
+  if(!authToken){
+    return <Navigate to='/'/>
+  }
+
+
   return (
     <Flex flexDirection="column">
       <Flex
@@ -46,7 +54,7 @@ const Home = () => {
         position="fixed"
         flexDirection="row"
       >
-        <Image width="160px" height="37px" src={logo} />
+        <Image  ml='50px'width="195px" height="45px" src={logo} />
         <InputGroup flexDirection="column">
           <Input
             name="Pesquisa"
@@ -70,12 +78,12 @@ const Home = () => {
         </InputGroup>
 
         <ModalComponent />
-        <Button padding="0" colorScheme="white" onClick={onOpen}>
+        <Button marginRight='70px' padding="0" colorScheme="white" onClick={onOpen}>
           <HiOutlineLogout size="2x" color={theme.colors.green.primary50} />
         </Button>
         <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
           <DrawerOverlay mt={["13vh", "8vh"]} />
-          <DrawerContent ml="auto" mt="80px" w={["450px", "350px"]}>
+          <DrawerContent ml="auto" mt="55px" w={["450px", "350px"]}>
             <DrawerHeader
               borderBottomWidth="1px"
               borderColor="gray.50"
@@ -83,7 +91,7 @@ const Home = () => {
             >
               {user.email}
             </DrawerHeader>
-            <DrawerBody>
+            <DrawerBody paddingTop='0'>
               <Flex
                 align="center"
                 onClick={logout}
@@ -98,15 +106,15 @@ const Home = () => {
                 >
                   <HiOutlineLogout
                     font-size="30px"
-                    color={theme.colors.green.primary50}
+                    color="white"
                   />
                 </Center>
                 <Box ml="4">
                   <Heading as="h2" fontSize="lg">
-                    Sair da minha conta
+                    Já vai {user.name}?
                   </Heading>
-                  <Text color="gray.300" fontSize="small">
-                    Sair da minha conta agora
+                  <Text color="gray.600" fontSize="small">
+                    Sim, partiu academia agora!
                   </Text>
                 </Box>
               </Flex>

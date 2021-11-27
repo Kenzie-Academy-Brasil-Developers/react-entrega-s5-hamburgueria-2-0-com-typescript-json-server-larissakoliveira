@@ -21,6 +21,7 @@ import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import logo from "../../assets/imgs/logo.png";
 import { Link } from "@chakra-ui/react";
 import { FiShoppingBag } from "react-icons/fi";
+import { Navigate } from "react-router";
 
 interface FormData {
   email: string;
@@ -30,7 +31,7 @@ interface FormData {
 
 const Register = () => {
 
-  const { signUp } = useAuth();
+  const { signUp, authToken } = useAuth();
 
   const schema = yup.object().shape({
     name: yup.string().required("Informe seu nome"),
@@ -54,6 +55,12 @@ const Register = () => {
     console.log(data)
     signUp(data);
   };
+
+
+  if(!!authToken){
+    return <Navigate to='/home'/>
+  }
+
 
   return (
     <Flex>

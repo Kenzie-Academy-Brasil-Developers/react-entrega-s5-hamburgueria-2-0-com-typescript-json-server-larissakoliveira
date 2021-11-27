@@ -1,6 +1,7 @@
-import { Box, Button, Grid, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Button, Grid, Image, Text, Heading, VStack } from "@chakra-ui/react";
 import { useCart } from "../../providers/Cart";
 import { useProducts } from "../../providers/Products";
+import { theme } from "../../styles/theme";
 
 const Card = () => {
 
@@ -8,8 +9,8 @@ const Card = () => {
   const { addToCart } = useCart();
 
   return (
-    <Grid  marginTop='80px' padding="20px" templateColumns="repeat(4, 1fr)" gap={90}>
-      {  filteredProducts.length > 0 ?
+    <Grid  marginTop='45px' padding="60px" templateColumns="repeat(4, 1fr)" gap={90}>
+      {/* {  filteredProducts.length > 0 ?
        filteredProducts.map((item) => (
       <Box
       borderRadius="5px"
@@ -31,28 +32,33 @@ const Card = () => {
       <h3>Preço: <b>{item.price.toFixed(2)}</b></h3>
       <Button onClick={() => addToCart(filteredProducts as any)}>Adicionar</Button>
       </Box>))
-      :
-      products.map((item, index) => (
-        <Box
+      : */}
+      {products.map((item, index) => (
+        <Flex
+        flexDirection="column"
         key={index}
         borderRadius="5px"
         border="1px solid"
         borderColor="gray.300"
         w="100%"
         h="100%"
-        padding='40px'
+
         >
+          <Flex bg='gray.100'justifyContent="center" w='100%'>
         <Image
-        height="158px"
-        widht="158px"
+        height="150px"
+        width="150px"
         src={item.image}
         alt={item.title}
         />
+        </Flex>
+        <VStack padding='15px'spacing='3' flexDirection="column" alignItems='flex-start'>
         <Text textAlign='center' fontWeight='bold'>{item.title}</Text>
-        <Text margin='5px'>{item.category}</Text>
-        <h3>Preço: <b>{item.price.toFixed(2)}</b></h3>
-        <Button onClick={() => addToCart(item as any)}>Adicionar</Button>
-        </Box>
+        <Text color='gray.400' margin='5px'>{item.category}</Text>
+        <Heading fontSize='16px' color={theme.colors.green.primary50} textAlign='center' >Preço: <b>{item.price.toFixed(2)}</b></Heading>
+        <Button position='static' padding='20px'color='white' bg='gray.300' onClick={() => addToCart(item as any)}>Adicionar</Button>
+        </VStack>
+        </Flex>
         ))
        
       }

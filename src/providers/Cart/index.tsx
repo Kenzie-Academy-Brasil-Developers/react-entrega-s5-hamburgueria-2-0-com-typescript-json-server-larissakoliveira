@@ -75,7 +75,6 @@ console.log(cart)
 
   const addToCart = (product: CartProductsData) => {
     const productWithUserId = { ...product, userId, "quantity": 1 };
-    console.log(productWithUserId);
     if (cart.every((item) => item.id !== product.id)) {
       api
         .post("/cart", productWithUserId, {
@@ -86,7 +85,7 @@ console.log(cart)
         .then(() => {
           getCart();
           toast({
-            position: "top",
+            position: "top-left",
             description: "Produto adicionado com sucesso",
             status: "success",
             duration: 5000,
@@ -96,7 +95,7 @@ console.log(cart)
         .catch((err) => console.log(err));
     } else {
       toast({
-        position: "top",
+        position: "top-left",
         description: "Produto já adicionado",
         status: "warning",
         duration: 5000,
@@ -115,7 +114,7 @@ console.log(cart)
       .then(() => {
         getCart()
         toast({
-          position: "top",
+          position: "top-left",
           description: "Produtos removidos com sucesso",
           status: "success",
           duration: 5000,
@@ -136,7 +135,7 @@ console.log(cart)
         .then(() => {
           getCart()
         toast({
-          position: "top",
+          position: "top-left",
           description: "Produto removido",
           status: "success",
           duration: 5000,
@@ -159,8 +158,8 @@ console.log(cart)
         .then(() => {
           getCart()
         toast({
-          position: "top",
-          description: "Produto removido",
+          position: "top-left",
+          description: "Produto adicionado",
           status: "success",
           duration: 5000,
           isClosable: true,
@@ -181,7 +180,7 @@ console.log(cart)
       .then(() => {
         getCart()
         toast({
-          position: "top",
+          position: "top-left",
           description: "Produtos removidos com sucesso",
           status: "success",
           duration: 5000,

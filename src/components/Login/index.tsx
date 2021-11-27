@@ -19,6 +19,7 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { FiShoppingBag } from 'react-icons/fi';
+import { Navigate } from "react-router";
 
 
 
@@ -36,7 +37,7 @@ interface LoginData {
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, authToken } = useAuth();
 
   const schema = yup.object().shape({
     email: yup.string().required("Informe email!"),
@@ -58,7 +59,9 @@ const Login = () => {
     login(userData);
   };
 
-
+  if(!!authToken){
+    return <Navigate to='/home'/>
+  }
 
   return (
     <>
