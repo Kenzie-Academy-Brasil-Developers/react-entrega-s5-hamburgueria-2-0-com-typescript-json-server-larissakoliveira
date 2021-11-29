@@ -24,7 +24,6 @@ import { useAuth } from "../../providers/Auth";
 import ModalComponent from "../Modal";
 import { theme } from "../../styles/theme";
 import { useProducts } from "../../providers/Products";
-import { useState } from "react";
 import { Navigate } from "react-router";
 import profilePic from "../../assets/imgs/garfieldProfile.png"
 
@@ -51,19 +50,19 @@ const Home = () => {
         as="header"
         width="100%"
         backgroundColor="white"
-        padding="10px"
+        padding="15px"
         position="fixed"
-        flexDirection="row"
+        flexDirection={["column","column", "row"]}
         justifyContent="space-around"
       >
         <Image width="195px" height="45px" src={logo} />
         <Flex alignItems= 'center' >
 
-        <InputGroup mr='15px' flexDirection="column">
+        <InputGroup mr='35px' flexDirection="column">
           <Input
             name="Pesquisa"
             placeholder="Digitar pesquisa"
-            width="300px"
+            width="auto"
             height="40px" 
             border-radius="8px"
             padding="[0px, 10px, 0px, 15px]"
@@ -75,7 +74,7 @@ const Home = () => {
             cursor="pointer"
             borderRadius="8px"
             height="40px" 
-            marginRight='8px'
+            marginRight='auto'
             bg={theme.colors.green.primary50}
             >
               <FaSearch color='white' />
@@ -83,13 +82,13 @@ const Home = () => {
         </InputGroup>
 
         <ModalComponent />
-        <Button ml='50px' padding="2px" colorScheme="white" onClick={onOpen}>
+        <Button  _hover={{ transform: "translateY(-6px)"}}  ml='50px' padding="2px" colorScheme="white" onClick={onOpen}>
           <HiOutlineLogout size='35px'color={theme.colors.green.primary50} />
         </Button>
             </Flex>
         <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
-          <DrawerOverlay mt={["13vh", "10vh"]} />
-          <DrawerContent backgroundColor='#ecf0f1' borderRadius='5px' ml="auto" mt="58px" w={["450px", "350px"]}>
+          <DrawerOverlay mt={["12vh", "13vh"]} />
+          <DrawerContent backgroundColor='#ecf0f1' borderRadius='5px' ml="auto" mt="83px" w={["450px", "350px"]}>
             <DrawerHeader
             padding='15px 5px 5px 5px'
               borderBottomWidth="1px"

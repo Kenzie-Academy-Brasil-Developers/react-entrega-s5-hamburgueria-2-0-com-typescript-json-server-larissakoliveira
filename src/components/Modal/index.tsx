@@ -38,7 +38,7 @@ const ModalComponent = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>
+      <Button _hover={{ transform: "translateY(-6px)"}} onClick={onOpen}>
         <Box w='20px'>
         <FaShoppingCart size='23px'color="gray" />{" "}
         </Box>

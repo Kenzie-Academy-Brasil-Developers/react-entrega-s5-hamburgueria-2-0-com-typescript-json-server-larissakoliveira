@@ -43,6 +43,18 @@ export const theme = extendTheme ({
           body: {
             fontFamily: "Inter"
           },
+          "&::-webkit-scrollbar": {
+            width: "17px",
+          },
+  
+          "&::-webkit-scrollbar-track": {
+            background: "white",
+          },
+  
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "green.primary50",
+            borderRadius: "8px"
+          },
         },
       },
     })

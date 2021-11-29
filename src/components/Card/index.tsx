@@ -9,7 +9,8 @@ const Card = () => {
   const { addToCart } = useCart();
 
   return (
-    <Grid  marginTop='45px' padding="60px" templateColumns="repeat(4, 1fr)" gap={90}>
+    <Grid w='100%' templateColumns='repeat(auto-fill, minmax(230px, 1fr))' gap={10} padding='8' mt='65px'>
+     
       {/* {  filteredProducts.length > 0 ?
        filteredProducts.map((item) => (
       <Box
@@ -34,14 +35,14 @@ const Card = () => {
       </Box>))
       : */}
       {products.map((item, index) => (
-        <Flex
-        flexDirection="column"
-        key={index}
-        borderRadius="5px"
-        border="1px solid"
-        borderColor="gray.300"
-        w="100%"
-        h="100%"
+        <Box
+         _hover={{ borderColor: "gray.300" }}
+      transition="border 0.2s, ease 0s, transform 0.2s"
+      borderWidth="1px"
+      borderColor="gray.50"
+      boxShadow='xl' 
+      padding="7"
+      w={["80vw", "auto"]}
 
         >
           <Flex bg='gray.100'justifyContent="center" w='100%'>
@@ -52,13 +53,13 @@ const Card = () => {
         alt={item.title}
         />
         </Flex>
-        <VStack padding='15px'spacing='3' flexDirection="column" alignItems='flex-start'>
+        <VStack padding='15px'spacing='3' flexDirection="column" alignItems={["center","center",'flex-start']}>
         <Text textAlign='center' fontWeight='bold'>{item.title}</Text>
         <Text color='gray.400' margin='5px'>{item.category}</Text>
         <Heading fontSize='16px' color={theme.colors.green.primary50} textAlign='center' >Preço: <b>{item.price.toFixed(2)}</b></Heading>
         <Button position='static' padding='20px'color='white' bg='gray.300' onClick={() => addToCart(item as any)}>Adicionar</Button>
         </VStack>
-        </Flex>
+        </Box>
         ))
        
       }
