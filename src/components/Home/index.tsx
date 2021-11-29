@@ -126,7 +126,7 @@ const Home = () => {
                     Já vai {user.name}?
                   </Heading>
                   <Text color="gray.600" fontSize="sm">
-                    Sim, partiu academia agora!
+                    Sim, partiu academia!
                   </Text>
                 </Box>
               </Flex>
