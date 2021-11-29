@@ -29,7 +29,7 @@ const ModalComponent = () => {
 
   const total = cart.reduce(function (acc, actual) {
     return acc + actual.quantity * actual.price;
-  }, 0);
+  }, 0); 
 
   const totalItems = cart.reduce(function (acc, actual) {
     return acc + actual.quantity
