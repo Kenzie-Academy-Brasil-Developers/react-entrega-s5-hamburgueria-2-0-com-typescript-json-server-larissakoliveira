@@ -50,7 +50,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
           title: "Login feito com sucesso!",
           description:  `Bem vindx, ${response.data.user.name}!`,
           status: "success",
-          duration: 2000,
+          duration: 4000,
           isClosable: true,
           position: "top-right",
         });
@@ -62,7 +62,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
           title: "Login inválido!",
           description: "Usuário não existente!",
           status: "error",
-          duration: 2000,
+          duration: 4000,
           isClosable: true,
           position: "top-right",
         });
@@ -100,6 +100,13 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.clear();
     setAuthToken("");
     navigate("/");
+    toast({
+      position: "top-right",
+      description: "Valeu! Volte sempre! =]",
+      status: "error",
+      duration: 4000,
+      isClosable: true,
+    });
   };
 
   return (

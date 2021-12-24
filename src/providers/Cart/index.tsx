@@ -115,7 +115,7 @@ console.log(cart)
         getCart()
         toast({
           position: "top-left",
-          description: "Produtos removidos com sucesso",
+          description: "Produto removido com sucesso",
           status: "success",
           duration: 5000,
           isClosable: true,

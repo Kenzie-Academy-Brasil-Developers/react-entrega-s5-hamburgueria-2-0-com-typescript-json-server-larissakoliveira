@@ -41,7 +41,7 @@ export const theme = extendTheme ({
       styles: {
         global: {
           body: {
-            fontFamily: "Inter"
+            fontFamily: "Inter",
           },
           "&::-webkit-scrollbar": {
             width: "17px",
