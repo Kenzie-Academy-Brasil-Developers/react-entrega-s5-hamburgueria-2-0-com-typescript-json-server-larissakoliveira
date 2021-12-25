@@ -48,7 +48,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         setUserId(response.data.user.id)
         toast({
           title: "Login feito com sucesso!",
-          description:  `Bem vindx, ${response.data.user.name}!`,
+          description:  `Bem vinda(o), ${response.data.user.name}!`,
           status: "success",
           duration: 4000,
           isClosable: true,

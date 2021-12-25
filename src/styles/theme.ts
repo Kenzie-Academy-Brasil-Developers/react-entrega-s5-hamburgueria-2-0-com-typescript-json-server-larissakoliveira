@@ -52,7 +52,7 @@ export const theme = extendTheme ({
           },
   
           "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "green.primary50",
+            bg: "green.primary50",
             borderRadius: "8px"
           },
         },

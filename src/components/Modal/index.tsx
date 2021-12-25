@@ -21,15 +21,21 @@ import { BiTrash } from "react-icons/bi";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { theme } from "../../styles/theme";
+import { useNavigate } from "react-router";
 
 const ModalComponent = () => {
-  const { cart, subItemCart, removeAllFromCart, removeItem, addItemCart } =
+
+  const navigate = useNavigate();
+
+  const checkout = () => {
+    navigate("/checkout")
+  }
+
+  const { cart, subItemCart, total, removeAllFromCart, removeItem, addItemCart } =
     useCart();
   const { user } = useAuth();
 
-  const total = cart.reduce(function (acc, actual) {
-    return acc + actual.quantity * actual.price;
-  }, 0); 
+ 
  
   const totalItems = cart.reduce(function (acc, actual) {
     return acc + actual.quantity
@@ -49,14 +55,14 @@ const ModalComponent = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader bg={theme.colors.green.primary50}>
-            Carrinho dx {user.name}
+            Seu carrinho {user.name}
           </ModalHeader>
           <ModalCloseButton />
           {cart.length > 0 ? (
             <ModalBody>
               {cart.map((item) => (
                 <Flex
-                  justifyContent="space-between"
+                  justifyContent="flex-start"
                   marginBottom="10px"
                   key={item.id}
                 >
@@ -64,9 +70,9 @@ const ModalComponent = () => {
                     <Image padding="7px" src={item.image} />
                   </Box>
                   <Flex>
-                    <Box marginLeft="10px">
-                      <Heading fontSize="21px">{item.title}</Heading>
-                      <Flex>
+                    <Box>
+                      <Heading margin="0px 10px" fontSize="21px">{item.title}</Heading>
+                      <Flex ml='25px'>
                         <Box w="25px" h="25px">
                           <AiOutlinePlusCircle
                             onClick={() => addItemCart(item)}
@@ -117,7 +123,10 @@ const ModalComponent = () => {
                 R$ {total.toFixed(2)}
               </Heading>
             </Flex>
-            <Button w="100%" onClick={removeAllFromCart}>
+            <Button bg='#50AF60' w="100%" onClick={checkout}>
+              Checkout
+            </Button>
+            <Button bg='#F35C5F' mt='10px' left='25%'w="50%" onClick={removeAllFromCart}>
               Remover todxs
             </Button>
           </ModalFooter>

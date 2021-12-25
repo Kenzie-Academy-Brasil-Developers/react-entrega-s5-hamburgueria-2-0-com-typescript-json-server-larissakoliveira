@@ -27,10 +27,7 @@ import { useProducts } from "../../providers/Products";
 import { Navigate } from "react-router";
 import profilePic from "../../assets/imgs/garfieldProfile.png"
 
-const Home = () => {
-
-
-  
+const Home = () => {  
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
@@ -42,7 +39,6 @@ const Home = () => {
   if(!authToken){
     return <Navigate to='/'/>
   }
-
 
   return (
     <Flex flexDirection="column">
@@ -58,11 +54,10 @@ const Home = () => {
         <Image width="195px" height="45px" src={logo} />
         <Flex alignItems= 'center' >
 
-        <InputGroup mr='35px' flexDirection="column">
+        <InputGroup mr={['2px',' 15px', '35px', '35px']}    width={["286px", "310px", "auto", "auto"]} flexDirection="column">
           <Input
             name="Pesquisa"
             placeholder="Digitar pesquisa"
-            width="auto"
             height="40px" 
             border-radius="8px"
             padding="[0px, 10px, 0px, 15px]"
@@ -82,7 +77,7 @@ const Home = () => {
         </InputGroup>
 
         <ModalComponent />
-        <Button  _hover={{ transform: "translateY(-6px)"}}  ml='50px' padding="2px" colorScheme="white" onClick={onOpen}>
+        <Button _hover={{ transform: "translateY(-6px)"}}  ml={["0", "15px", "50px", "50px"]} padding="2px" colorScheme="white" onClick={onOpen}>
           <HiOutlineLogout size='35px'color={theme.colors.green.primary50} />
         </Button>
             </Flex>
@@ -90,7 +85,7 @@ const Home = () => {
           <DrawerOverlay mt={["12vh", "13vh"]} />
           <DrawerContent backgroundColor='#ecf0f1' borderRadius='5px' ml="auto" mt="83px" w={["450px", "350px"]}>
             <DrawerHeader
-            padding='15px 5px 5px 5px'
+            padding='[15px 5px 5px 5px]'
               borderBottomWidth="1px"
               borderColor="gray.50"
               color="gray.400"

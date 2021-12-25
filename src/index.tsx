@@ -12,7 +12,7 @@ ReactDOM.render(
         <ChakraProvider>
           <App />
         </ChakraProvider>
-      </AppProvider>
+      </AppProvider> 
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

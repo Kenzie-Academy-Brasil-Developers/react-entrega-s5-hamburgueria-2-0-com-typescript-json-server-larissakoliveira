@@ -63,7 +63,13 @@ const Register = () => {
 
 
   return (
-    <Flex>
+    <Flex
+    flexDirection={["column", "column", "row", "row"]}
+    alignItems="center"
+    justifyContent="center"
+    height={["auto", "auto", "100vh", "100vh"]}
+    padding={["10px 15px", "10 15px", "0px", "0px"]}
+    >
      <Flex
           w={["100%", "100%", "90%", "65%"]}
           justifyContent="center"

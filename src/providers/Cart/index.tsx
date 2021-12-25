@@ -36,6 +36,7 @@ interface CartProviderData {
   removeItem: (item:number) => void;
   subItemCart: (item:CartProductsData) => void;
   addItemCart: (item:CartProductsData) => void;
+  total: number;
 }
 
 const CartContext = createContext<CartProviderData>({} as CartProviderData);
@@ -53,8 +54,9 @@ const CartProvider = ({ children }: CartProviderProps) => {
   const [cart, setCart] = useState<CartProductsData[]>(
     [] as CartProductsData[]
   );
-console.log(cart)
-
+  const total = cart.reduce(function (acc, actual) {
+    return acc + actual.quantity * actual.price;
+  }, 0); 
 
   const getCart = useCallback(() => {
     api
@@ -88,7 +90,7 @@ console.log(cart)
             position: "top-left",
             description: "Produto adicionado com sucesso",
             status: "success",
-            duration: 5000,
+            duration: 4000,
             isClosable: true,
           });
         })
@@ -98,7 +100,7 @@ console.log(cart)
         position: "top-left",
         description: "Produto já adicionado",
         status: "warning",
-        duration: 5000,
+        duration: 4000,
         isClosable: true,
       });
     }
@@ -117,7 +119,7 @@ console.log(cart)
           position: "top-left",
           description: "Produto removido com sucesso",
           status: "success",
-          duration: 5000,
+          duration: 4000,
           isClosable: true,
         });
       })
@@ -138,7 +140,7 @@ console.log(cart)
           position: "top-left",
           description: "Produto removido",
           status: "success",
-          duration: 5000,
+          duration: 4000,
           isClosable: true,
         });
        }) 
@@ -161,7 +163,7 @@ console.log(cart)
           position: "top-left",
           description: "Produto adicionado",
           status: "success",
-          duration: 5000,
+          duration: 4000,
           isClosable: true,
         });
        }) 
@@ -183,7 +185,7 @@ console.log(cart)
           position: "top-left",
           description: "Produtos removidos com sucesso",
           status: "success",
-          duration: 5000,
+          duration: 4000,
           isClosable: true,
         });
       })
@@ -193,7 +195,7 @@ console.log(cart)
   }
   
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeAllFromCart, getCart, removeItem, subItemCart, addItemCart }}>
+    <CartContext.Provider value={{ cart, total, addToCart, removeAllFromCart, getCart, removeItem, subItemCart, addItemCart }}>
       {children}
     </CartContext.Provider>
   );

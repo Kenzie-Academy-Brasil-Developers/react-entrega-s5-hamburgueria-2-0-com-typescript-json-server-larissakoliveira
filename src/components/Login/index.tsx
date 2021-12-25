@@ -105,7 +105,7 @@ const Login = () => {
                 {...register("password")}
                 data-testid="passwordTestId"
               />
-              {/* {!errors.email && <Text ml="1" mt='1' color='gray.300 '>email@eaxmle.com</Text>} */}
+     
             </Box>
           </VStack>
           <VStack mt="4" spacing="5">
