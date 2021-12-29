@@ -58,6 +58,8 @@ const CartProvider = ({ children }: CartProviderProps) => {
     return acc + actual.quantity * actual.price;
   }, 0); 
 
+
+
   const getCart = useCallback(() => {
     api
       .get(`cart/?userId=${userId}`, {
@@ -73,7 +75,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
 
   useEffect(() => {
     getCart();
-  }, [getCart]);
+  }, [cart]);
 
   const addToCart = (product: CartProductsData) => {
     const productWithUserId = { ...product, userId, "quantity": 1 };
