@@ -5,7 +5,7 @@
 
 ##### Used Techs:
 
-###### #react 
+ #react 
 ###### #typeScript 
 ###### #styledComponents 
 ###### #css 
