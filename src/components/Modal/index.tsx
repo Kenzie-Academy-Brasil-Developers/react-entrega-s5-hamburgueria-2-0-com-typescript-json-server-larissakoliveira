@@ -35,7 +35,7 @@ const ModalComponent = () => {
     useCart();
   const { user } = useAuth();
 
- 
+  console.log(cart)
  
   const totalItems = cart.reduce(function (acc, actual) {
     return acc + actual.quantity

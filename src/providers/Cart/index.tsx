@@ -59,7 +59,6 @@ const CartProvider = ({ children }: CartProviderProps) => {
   }, 0); 
 
 
-
   const getCart = useCallback(() => {
     api
       .get(`cart/?userId=${userId}`, {
@@ -69,6 +68,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
       })
       .then((response) => {
         setCart(response.data);
+
       })
       .catch((err) => console.log(err));
   }, []);
@@ -76,7 +76,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
 
   useEffect(() => {
     getCart();
-  }, [cart]);
+  }, []);
 
   
 
