@@ -5,4 +5,18 @@
 
 ##### Used Techs:
 
-###### # react #typeScript #styledComponents #css #html #chakraUi #mobileFirst #contextApi #materialUi #Yup #jwtDecode #axios #router-dom #react-stripe-js #javascript
+###### #react 
+###### #typeScript 
+###### #styledComponents 
+###### #css 
+###### #html 
+###### #chakraUi 
+###### #mobileFirst 
+###### #contextApi 
+###### #materialUi 
+###### #Yup 
+###### #jwtDecode 
+###### #axios 
+###### #router-dom 
+###### #react-stripe-js 
+###### #javascript
