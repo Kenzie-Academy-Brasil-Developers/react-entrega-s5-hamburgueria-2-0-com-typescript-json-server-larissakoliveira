@@ -36,21 +36,23 @@ const ProductsContext = createContext<ProductsProviderData>(
   {} as ProductsProviderData
 );
 
+
 export const ProductsProvider = ({ children }: ProductsProps) => {
-
-
+  
+  
   const [products, setProducts] = useState<ProductsInterface[]>(
     [] as ProductsInterface[]
-  );
-
-  const [filteredProducts, setFilteredProducts] = useState<ProductsInterface[]>(
-    [] as ProductsInterface[]
-  );
-
-  const [inputValue, setInputValue] = useState("");
-
-  useEffect(() => {
-    api
+    );
+    
+    const [filteredProducts, setFilteredProducts] = useState<ProductsInterface[]>(
+      [] as ProductsInterface[]
+      );
+      
+      const [inputValue, setInputValue] = useState("");
+      console.log(inputValue)
+      
+      useEffect(() => {
+        api
       .get("/products")
       .then((response) => {
         setProducts(response.data);
@@ -63,10 +65,11 @@ export const ProductsProvider = ({ children }: ProductsProps) => {
 
   const productNameFiltered = (searchedProd: string) => {
     const filteredProducts = products.filter((product) =>
-      product.title.toLowerCase().includes(searchedProd.toLowerCase())
+      product.title.toLowerCase().match(searchedProd.toLowerCase())
     );
     setFilteredProducts(filteredProducts);
-    setInputValue("")
+    // setInputValue("")
+    console.log(filteredProducts)
   };
 
 

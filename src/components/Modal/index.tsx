@@ -34,8 +34,6 @@ const ModalComponent = () => {
   const { cart, subItemCart, total, removeAllFromCart, removeItem, addItemCart } =
     useCart();
   const { user } = useAuth();
-
-  console.log(cart)
  
   const totalItems = cart.reduce(function (acc, actual) {
     return acc + actual.quantity
@@ -72,6 +70,7 @@ const ModalComponent = () => {
                   <Flex>
                     <Box>
                       <Heading margin="0px 10px" fontSize="21px">{item.title}</Heading>
+                      <Text ml="10px" fontSize="15px">${item.price}</Text>
                       <Flex ml='25px'>
                         <Box w="25px" h="25px">
                           <AiOutlinePlusCircle
@@ -120,7 +119,7 @@ const ModalComponent = () => {
                 Total
               </Heading>
               <Heading padding="10px" fontSize="21px">
-                R$ {total.toFixed(2)}
+                $ {total.toFixed(2)}
               </Heading>
             </Flex>
             <Button bg='#50AF60' w="100%" onClick={checkout}>

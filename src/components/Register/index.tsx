@@ -22,6 +22,7 @@ import logo from "../../assets/imgs/logo.png";
 import { Link } from "@chakra-ui/react";
 import { FiShoppingBag } from "react-icons/fi";
 import { Navigate } from "react-router";
+import { useMediaQuery } from '@chakra-ui/react'
 
 interface FormData {
   email: string;
@@ -30,6 +31,8 @@ interface FormData {
 }
 
 const Register = () => {
+
+  const [isLargerThan720] = useMediaQuery('(min-width: 720px)')
 
   const { signUp, authToken } = useAuth();
 
@@ -71,11 +74,11 @@ const Register = () => {
     padding={["10px 15px", "10 15px", "0px", "0px"]}
     >
      <Flex
-          w={["100%", "100%", "90%", "65%"]}
+          w={["100%", "100%", "92%", "95%"]}
           justifyContent="center"
           flexDirection={["column", "column", "column", "column"]}
           alignItems="flex-start"
-          marginLeft= "200px"
+          marginLeft= {["0", "0", "70px", "100px"]}
         >
      
           <Box w={["100%", "100%", "50%", "50%"]}>
@@ -87,7 +90,7 @@ const Register = () => {
           </Box>
           <Flex
             border= "1px solid #E0E0E0"
-            w={["100%", "100%", "57%", "58%"]}
+            w={["100%", "100%", "80%", "85%"]}
             boxShadow= "0px 4px 40px -20px #00000040"
             margin= "15px 0px"
             borderRadius= "5px"
@@ -108,7 +111,9 @@ const Register = () => {
                 <strong>melhores</strong> ingredientes.
               </Text>
               </Flex>
-              <Grid templateColumns="repeat(6, 3fr)" gap={6} mt="5" w="20%">
+              {
+              isLargerThan720 ? 
+              <Grid templateColumns="repeat(6, 3fr)" gap={6} mt="5" w="20%" ml="10px">
             {Array.from({ length: 18 }).map((_, i) => (
               <Box
                 borderRadius="10px"
@@ -118,16 +123,17 @@ const Register = () => {
                 key={i}
               />
             ))}
-          </Grid>
+          </Grid> : <hr/>}
+                      
       </Flex>
         <Grid
-        mr='200px'
+        mr={["0", "0", "70px", "80px"]}
          as="form"
          onSubmit={handleSubmit(handleForm)}
          id="login_Form"
          padding="20px 15px"
          mt={["4", "4", "20px", "40px"]}
-         w={["100%", "100%", "55%", "55%"]}
+         w={["100%", "100%", "70%", "75%"]}
         >
           <Flex justifyContent='space-between'>
             <Heading size="sm" color="gray.600">
@@ -174,7 +180,7 @@ const Register = () => {
                 />
               </Box>
             </VStack>
-            <Box mt="4" spacing="5">
+            <Box mt="4" spacing="5" display="flex" justifyContent="center">
             <Button
               type="submit"
               bg="gray.100"
@@ -190,8 +196,6 @@ const Register = () => {
               </Button>
             </Box>
         
-    
-       
         </Grid>
     </Flex>
   );

@@ -97,7 +97,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.clear()
     setAuthToken("");
     navigate("/");
     toast({

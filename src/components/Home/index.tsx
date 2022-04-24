@@ -61,6 +61,7 @@ const Home = () => {
             height="40px" 
             border-radius="8px"
             padding="[0px, 10px, 0px, 15px]"
+            w={["100%", "100%", "auto", "auto"]}
             bg="white"
             onChange={(event) => setInputValue(event.target.value)}
             />
@@ -77,7 +78,7 @@ const Home = () => {
         </InputGroup>
 
         <ModalComponent />
-        <Button _hover={{ transform: "translateY(-6px)"}}  ml={["0", "15px", "50px", "50px"]} padding="2px" colorScheme="white" onClick={onOpen}>
+        <Button _hover={{ transform: "translateY(-6px)"}}  ml={["5px", "15px", "50px", "50px"]} padding="2px" colorScheme="white" onClick={onOpen}>
           <HiOutlineLogout size='35px'color={theme.colors.green.primary50} />
         </Button>
             </Flex>

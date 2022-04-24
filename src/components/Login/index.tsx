@@ -7,6 +7,7 @@ import {
   Button,
   Text,
   VStack,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { useAuth } from "../../providers/Auth";
 import * as yup from "yup";
@@ -36,6 +37,9 @@ interface LoginData {
 
 
 const Login = () => {
+
+  const [isLargerThan720] = useMediaQuery('(min-width: 720px)')
+
   const navigate = useNavigate();
   const { login, authToken } = useAuth();
 
@@ -79,8 +83,8 @@ const Login = () => {
           id="login_Form"
           padding="20px 15px"
           mt={["4", "4", "0"]}
-          w={["100%", "100%", "50%", "50%"]}
-          marginLeft="100px"
+          w={["100%", "100%", "60%", "50%"]}
+          marginLeft={["0", "0", "40px", "100px"]}
         >
           <Heading size="md" color="gray.600">
             Login
@@ -137,7 +141,7 @@ const Login = () => {
                 background: "gray.200",
               }}
             >
-              kakakakakakakaka
+              Cadastrar
             </Button>
           </VStack>
         </Grid>
@@ -146,7 +150,7 @@ const Login = () => {
           justifyContent="center"
           flexDirection={["column", "column", "column", "column"]}
           alignItems="flex-start"
-          marginLeft="100px"
+          marginLeft={["0", "0", "30px", "100px"]}
         >
           <Box w={["100%", "100%", "50%", "50%"]} paddingRight="100px">
             <Image
@@ -157,7 +161,7 @@ const Login = () => {
           </Box>
           <Flex
             border= "1px solid #E0E0E0"
-            w={["100%", "100%", "50%", "50%"]}
+            w={["100%", "100%", "70%", "70%"]}
             boxShadow= "0px 4px 40px -20px #00000040"
             margin= "15px 0px"
             borderRadius= "5px"
@@ -179,7 +183,9 @@ const Login = () => {
               </Text>
           
           </Flex>
-          <Grid templateColumns="repeat(6, 3fr)" gap={6} mt="5" w="20%">
+          {
+              isLargerThan720 ? 
+              <Grid templateColumns="repeat(6, 3fr)" gap={6} mt="5" w="20%" ml="10px">
             {Array.from({ length: 18 }).map((_, i) => (
               <Box
                 borderRadius="10px"
@@ -189,11 +195,11 @@ const Login = () => {
                 key={i}
               />
             ))}
-          </Grid>
+          </Grid> : <hr/>}
         </Flex>
       </Flex>
     </>
   );
-};
+};  
 
 export default Login;
