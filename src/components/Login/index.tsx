@@ -137,7 +137,7 @@ const Login = () => {
                 background: "gray.200",
               }}
             >
-              Cadastrar
+              kakakakakakakaka
             </Button>
           </VStack>
         </Grid>
