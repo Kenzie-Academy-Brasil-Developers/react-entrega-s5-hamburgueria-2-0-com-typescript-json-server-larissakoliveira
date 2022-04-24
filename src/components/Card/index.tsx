@@ -11,7 +11,7 @@ const Card = () => {
   return (
     <Grid w='100%' templateColumns='repeat(auto-fill, minmax(230px, 1fr))' gap={10} padding='8' mt='65px'>
 
-{filteredProducts.length > 0 ?
+{/* {filteredProducts.length > 0 ?
        filteredProducts.map((item) => (
       <Box
       borderRadius="5px"
@@ -32,8 +32,8 @@ const Card = () => {
       <Text margin='5px'>{item.category}</Text>
       <h3>Preço: <b>{item.price.toFixed(2)}</b></h3>
       <Button onClick={() => addToCart(filteredProducts as any)}>Adicionar</Button>
-      </Box>))
-      : products.map((item, index) => (
+      </Box>)) : */
+      products.map((item, index) => (
         <Box
          _hover={{ borderColor: "gray.300" }}
       transition="border 0.2s, ease 0s, transform 0.2s"
