@@ -53,7 +53,7 @@ const ModalComponent = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader bg={theme.colors.green.primary50}>
-            Seu carrinho {user.name}
+            {user.name}'s cart
           </ModalHeader>
           <ModalCloseButton />
           {cart.length > 0 ? (
@@ -110,7 +110,7 @@ const ModalComponent = () => {
               ))}
             </ModalBody>
           ) : (
-            <ModalBody>Carrinho <strong>VAZIO</strong> :(( <Text> Não fique com fome!</Text></ModalBody>
+            <ModalBody><strong>EMPTY</strong> CART :(( <Text> Don't be hungry!</Text></ModalBody>
           )}
           <hr />
           <ModalFooter display="column">
@@ -126,7 +126,7 @@ const ModalComponent = () => {
               Checkout
             </Button>
             <Button bg='#F35C5F' mt='10px' left='25%'w="50%" onClick={removeAllFromCart}>
-              Remover todxs
+              Remove all
             </Button>
           </ModalFooter>
         </ModalContent>

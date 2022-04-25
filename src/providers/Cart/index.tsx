@@ -93,7 +93,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
           getCart();
           toast({
             position: "top-left",
-            description: "Produto adicionado com sucesso",
+            description: `${product.title} added to cart`,
             status: "success",
             duration: 4000,
             isClosable: true,
@@ -103,7 +103,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
     } else {
       toast({
         position: "top-left",
-        description: "Produto já adicionado",
+        description: "Product already in the cart",
         status: "warning",
         duration: 4000,
         isClosable: true,
@@ -122,7 +122,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
         getCart()
         toast({
           position: "top-left",
-          description: "Produto removido com sucesso",
+          description: "Product removed",
           status: "success",
           duration: 4000,
           isClosable: true,
@@ -143,7 +143,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
           getCart()
         toast({
           position: "top-left",
-          description: "Produto removido",
+          description: `${item.title} removed`,
           status: "success",
           duration: 4000,
           isClosable: true,
@@ -166,7 +166,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
           getCart()
         toast({
           position: "top-left",
-          description: "Produto adicionado",
+          description: `One more ${item.title} added`,
           status: "success",
           duration: 4000,
           isClosable: true,
@@ -188,7 +188,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
         getCart()
         toast({
           position: "top-left",
-          description: "Produtos removidos com sucesso",
+          description: "Products successfully removed",
           status: "success",
           duration: 4000,
           isClosable: true,

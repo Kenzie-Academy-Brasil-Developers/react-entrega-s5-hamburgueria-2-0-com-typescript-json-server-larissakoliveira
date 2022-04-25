@@ -27,7 +27,6 @@ interface ProductsInterface {
 interface ProductsProviderData {
   products: ProductsInterface[];
   filteredProducts: ProductsInterface[];
-  productNameFiltered: (searchedProd: string) => void;
   inputValue: string;
   setInputValue: React.Dispatch<SetStateAction<string>>;
 }
@@ -43,40 +42,31 @@ export const ProductsProvider = ({ children }: ProductsProps) => {
   const [products, setProducts] = useState<ProductsInterface[]>(
     [] as ProductsInterface[]
     );
-    
-    const [filteredProducts, setFilteredProducts] = useState<ProductsInterface[]>(
-      [] as ProductsInterface[]
-      );
-      
+          
       const [inputValue, setInputValue] = useState("");
-      console.log(inputValue)
-      
+     
       useEffect(() => {
         api
       .get("/products")
       .then((response) => {
         setProducts(response.data);
-        setFilteredProducts(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const productNameFiltered = (searchedProd: string) => {
-    const filteredProducts = products.filter((product) =>
-      product.title.toLowerCase().match(searchedProd.toLowerCase())
+  
+    const filteredProducts = products.filter(
+      (item) =>
+        item.title.toLowerCase().includes(inputValue) ||
+        item.category.toLowerCase().includes(inputValue)
     );
-    setFilteredProducts(filteredProducts);
-    // setInputValue("")
-    console.log(filteredProducts)
-  };
-
 
 
   return (
     <ProductsContext.Provider
-      value={{ inputValue, setInputValue, products, filteredProducts, productNameFiltered }}
+      value={{ inputValue, setInputValue, products, filteredProducts }}
     >
       {children}
     </ProductsContext.Provider>

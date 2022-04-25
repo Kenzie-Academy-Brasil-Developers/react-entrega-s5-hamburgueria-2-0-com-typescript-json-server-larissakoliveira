@@ -37,13 +37,13 @@ const Register = () => {
   const { signUp, authToken } = useAuth();
 
   const schema = yup.object().shape({
-    name: yup.string().required("Informe seu nome"),
-    email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
-    password: yup.string().min(6, "Minimo de 6 caracteres.").required("Senha obrigatória"),
+    name: yup.string().required("Enter your name"),
+    email: yup.string().required("Email is required").email("Invalid email"),
+    password: yup.string().min(6, "Minimum 6 characters.").required("Password is required"),
     confirmPassword: yup
       .string()
-      .required("Confirmação de senha obrigatória")
-      .oneOf([yup.ref("password")], "Senhas diferentes"),
+      .required("Password confirmation required")
+      .oneOf([yup.ref("password")], "Passwords mismatch"),
   });
 
   const {
@@ -107,8 +107,8 @@ const Register = () => {
                 maxW="350px"
                 padding="10px"
               >
-                A vida é como um sanduíche, é preciso recheá-la com os{" "}
-                <strong>melhores</strong> ingredientes.
+                Life is like a sandwich, you have to fill it with the{" "}
+                <strong>best</strong> ingredients.
               </Text>
               </Flex>
               {
@@ -137,18 +137,18 @@ const Register = () => {
         >
           <Flex justifyContent='space-between'>
             <Heading size="sm" color="gray.600">
-              Cadastro
+              Sign Up
             </Heading>
             <Link text-decoration="underline" color="gray.600" href="/">
-              Retornar para o login
+              go back to login
             </Link>
           </Flex>
         
             <VStack mt="6" spacing="5">
               <Box w="100%">
                 <Input
-                  label="Nome"
-                  placeholder="Digite seu nome"
+                  label="Name"
+                  placeholder="Enter your name"
                   type="text"
                   error={errors.name}
                   {...register("name")}
@@ -156,24 +156,24 @@ const Register = () => {
                 />
                 <Input
                   label="Email"
-                  placeholder="Digite seu email"
+                  placeholder="Enter your email"
                   type="email"
                   error={errors.email}
                   icon={FaEnvelope}
                   {...register("email")}
                 />
                 <Input
-                  label="Senha"
+                  label="Password"
                   type="password"
-                  placeholder="Digite sua senha"
+                  placeholder="Enter your password"
                   error={errors.password}
                   icon={FaLock}
                   {...register("password")}
                 />
                 <Input
-                  label="Confirme sua senha"
+                  label="Confirm your password"
                   type="password"
-                  placeholder="Confirme sua senha"
+                  placeholder="Confirm your password"
                   error={errors.confirmPassword}
                   icon={FaLock}
                   {...register("confirmPassword")}
@@ -192,7 +192,7 @@ const Register = () => {
                 background: "gray.100",
               }}
               >
-                Cadastrar
+                Sign Up
               </Button>
             </Box>
         

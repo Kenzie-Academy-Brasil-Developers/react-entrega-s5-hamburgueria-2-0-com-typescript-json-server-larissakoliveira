@@ -47,8 +47,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         setUser(response.data.user);
         setUserId(response.data.user.id)
         toast({
-          title: "Login feito com sucesso!",
-          description:  `Bem vinda(o), ${response.data.user.name}!`,
+          title: "Successfully logged in",
+          description:  `Welcome, ${response.data.user.name}!`,
           status: "success",
           duration: 4000,
           isClosable: true,
@@ -59,8 +59,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       .catch((err) => {
         console.log(err)
         toast({
-          title: "Login inválido!",
-          description: "Usuário não existente!",
+          title: "Invalid Login!",
+          description: "Something went wrong, check your credentials!",
           status: "error",
           duration: 4000,
           isClosable: true,
@@ -72,10 +72,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const signUp = (userData:User) => {
     api
       .post("/register", userData)
-      .then((response) => {
+      .then((_) => {
         toast({
-          title: "Conta criada com sucesso!",
-          description: "Faça seu login",
+          title: "Great! You've created your account!",
+          description: "Do your login",
           status: "success",
           duration: 2000,
           isClosable: true,
@@ -86,8 +86,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       .catch((err) => {
         console.log(err);
         toast({
-          title: "Cadastro inválido!",
-          description: "Usuário já existente!",
+          title: "Invalid sign up!",
+          description: "User already exists!",
           status: "error",
           duration: 2000,
           isClosable: true,
@@ -102,7 +102,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     navigate("/");
     toast({
       position: "top-right",
-      description: "Valeu! Volte sempre! =]",
+      description: "Thanks! Hope to see you soon =]",
       status: "error",
       duration: 4000,
       isClosable: true,

@@ -34,7 +34,7 @@ const Checkout = () => {
       toast({
         position: "top-right",
         description:
-          "Compra efetuada! Enviamos um email com todas informações!",
+          "All set! We just sent a confirmation email!",
         status: "success",
         duration: 4000,
         isClosable: true,
@@ -43,7 +43,7 @@ const Checkout = () => {
       toast({
         position: "top-right",
         description:
-          "Compra efetuada! Enviamos um email com todas informações!",
+          "Done! We sent a email with all informations!",
         status: "success",
         duration: 4000,
         isClosable: true,
@@ -68,11 +68,11 @@ const Checkout = () => {
           fontWeight="bold"
           fontSize="1.8rem"
         >
-          Métodos de pagamento
+          Payment methods
         </Heading>
 
         <Flex flexDirection="column" mb='45px'borderBottom='solid 1pix black'justifyContent="center">
-          <Text textAlign="center" fontWeight="bold" mr="20px">⇨ &nbsp;&nbsp;&nbsp;Pague com cartão de crédito ou débito </Text>
+          <Text textAlign="center" fontWeight="bold" mr="20px">⇨ &nbsp;&nbsp;&nbsp;Payment with credit or debit card</Text>
           <Box m="0 auto">
           <StripeCheckout
             stripeKey="pk_test_51KAJfzHiM8NvJQ7K3VfCt1fmxHFd8QuvV938DQcITum6UO4ANpO4BTjWsdIfZed0jvE9fPNFyH6DFi9lyqNmz3SV004eraSwlH"
@@ -89,12 +89,10 @@ const Checkout = () => {
 
         <Text fontWeight="bold" mt="20px" textAlign="center">
             
-        ⇨ &nbsp;&nbsp;&nbsp;Envie pix e recibo para <Link href="tel:021999999999">(21) 99999-9999</Link> logo entregaremos seu pedido!</Text> 
+        ⇨ &nbsp;&nbsp;&nbsp;Send a pix(venmo) to <Link href="tel:021999999999">(21) 99999-9999</Link>, soon we will delivery your products!</Text> 
 
                </Flex>
-               <Flex alignItems="center"flexDirection="column">
-
-         
+               <Flex alignItems="center"flexDirection="column">         
          
           <Box paddingBottom="25px">
 
@@ -105,7 +103,7 @@ const Checkout = () => {
               </Box>
       </Box>
       <Button display="flex" margin="5px auto" bg="#50AF60" color="#fff" onClick={goBack}>
-        Volte a BurguerKenzie
+        Go back to BurguerKenzie
       </Button>
     </>
   );

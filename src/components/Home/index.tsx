@@ -31,7 +31,7 @@ const Home = () => {
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
-  const { productNameFiltered, inputValue, setInputValue } = useProducts();
+  const { setInputValue } = useProducts();
 
   const { logout, user, authToken } = useAuth();
 
@@ -57,16 +57,15 @@ const Home = () => {
         <InputGroup mr={['2px',' 15px', '35px', '35px']}    width={["286px", "310px", "auto", "auto"]} flexDirection="column">
           <Input
             name="Pesquisa"
-            placeholder="Digitar pesquisa"
+            placeholder="Search your product"
             height="40px" 
             border-radius="8px"
-            padding="[0px, 10px, 0px, 15px]"
+            padding="[0px, 10px, 15px, 20px]"
             w={["100%", "100%", "auto", "auto"]}
             bg="white"
             onChange={(event) => setInputValue(event.target.value)}
             />
           <InputRightElement
-            onClick={() => productNameFiltered(inputValue)}
             cursor="pointer"
             borderRadius="8px"
             height="40px" 
@@ -84,7 +83,7 @@ const Home = () => {
             </Flex>
         <Drawer placement="top" onClose={onClose} isOpen={isOpen}>
           <DrawerOverlay mt={["12vh", "13vh"]} />
-          <DrawerContent backgroundColor='#ecf0f1' borderRadius='5px' ml="auto" mt="83px" w={["450px", "350px"]}>
+          <DrawerContent backgroundColor='#ecf0f1' borderRadius='5px' ml="auto" mt={["60px", "60px", "75px", "83px"]} w={["450px", "350px"]}>
             <DrawerHeader
             padding='[15px 5px 5px 5px]'
               borderBottomWidth="1px"
@@ -119,10 +118,10 @@ const Home = () => {
                 </Center>
                 <Box ml="4">
                   <Heading as="h2" fontSize="lg">
-                    Já vai {user.name}?
+                    Already leaving {user.name}?
                   </Heading>
                   <Text color="gray.600" fontSize="sm">
-                    Sim, partiu academia!
+                    Yep, let's go to the gym!
                   </Text>
                 </Box>
               </Flex>

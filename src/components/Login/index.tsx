@@ -44,11 +44,11 @@ const Login = () => {
   const { login, authToken } = useAuth();
 
   const schema = yup.object().shape({
-    email: yup.string().required("Informe email!"),
+    email: yup.string().required("Email is required!"),
     password: yup
       .string()
-      .min(6, "Minimo de 6 caracteres.")
-      .required("Informe senha!"),
+      .min(6, "Minimum 6 characters")
+      .required("Password is required!"),
   });
 
   const {
@@ -84,6 +84,7 @@ const Login = () => {
           padding="20px 15px"
           mt={["4", "4", "0"]}
           w={["100%", "100%", "60%", "50%"]}
+          
           marginLeft={["0", "0", "40px", "100px"]}
         >
           <Heading size="md" color="gray.600">
@@ -101,9 +102,9 @@ const Login = () => {
                 data-testid="userNameTestId"
               />
               <Input 
-                label="Senha"
+                label="Password"
                 type="password"
-                placeholder="Digite sua senha"
+                placeholder="Enter your password"
                 error={errors.password}
                 icon={FaLock}
                 {...register("password")}
@@ -125,10 +126,10 @@ const Login = () => {
               type="submit"
               form="login_Form"
             >
-              Logar
+              Login
             </Button>
             <Text w="70%" textAlign="center" color="gray.400">
-              Crie sua conta para saborear muitas delícias e matar sua fome!
+            Create your account to taste the best food and satisfy your hunger!
             </Text>
             <Button
               bg="gray.100"
@@ -141,7 +142,7 @@ const Login = () => {
                 background: "gray.200",
               }}
             >
-              Cadastrar
+              Sign Up
             </Button>
           </VStack>
         </Grid>
@@ -178,8 +179,8 @@ const Login = () => {
                 maxW="350px"
                 padding="10px"
               >
-                A vida é como um sanduíche, é preciso recheá-la com os{" "}
-                <strong>melhores</strong> ingredientes.
+                 Life is like a sandwich, you have to fill it with the{" "}
+                <strong>best</strong> ingredients.
               </Text>
           
           </Flex>
