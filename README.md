@@ -24,10 +24,9 @@ https://user-images.githubusercontent.com/82476805/170345442-dc8e4102-04fa-45c1-
 
 ### Author
 ---
-Feito com ❤️ por Larissa Oliveira 👋🏽 Entre em contato!
+Made with ❤️ by Larissa Oliveira 👋🏽 Get in touch!
 
-<a target="_blank" href="https://larissa-portfolio.vercel.app/">
- <br />
- <sub><b>Larissa Oliveira</b></sub></a> <a href="https://www.linkedin.com/in/larissakoliveira/" title="larissa">🚀</a>
-[![Linkedin Badge](https://img.shields.io/endpoint?logo=Larissa)](https://www.linkedin.com/in/larissakoliveira/) 
+<a target="_blank" href="https://larissa-portfolio.vercel.app/"> My-Portfolio
+</a>
+ 
 
