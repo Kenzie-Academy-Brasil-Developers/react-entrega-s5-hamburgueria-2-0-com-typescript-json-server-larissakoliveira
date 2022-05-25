@@ -1,5 +1,6 @@
 <h1 align="center" >BurguerKenzie Ecommerce</h1>
-[image](https://user-images.githubusercontent.com/82476805/170345616-80d48e31-1515-4fc6-9b89-0980dc57e3df.png)
+
+![image](https://user-images.githubusercontent.com/82476805/170350632-17bc8bce-c096-4c83-af03-e13e0dbe8f76.png)
 
 <p align="center">Mobile-first project made during my course at Kenzie Academy Brasil that I implemented more techs to practice! It is a hamburguer e-commerce, the API used was a fake api that I created using json-server fake API. You can add the product on the cart, checkout, pay by credit card, debit card or by pix(payment method like Venmo). </p>
 
