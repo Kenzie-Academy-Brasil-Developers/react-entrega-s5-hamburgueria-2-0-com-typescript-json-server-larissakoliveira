@@ -26,7 +26,7 @@ https://user-images.githubusercontent.com/82476805/170345442-dc8e4102-04fa-45c1-
 ---
 Made with ❤️ by Larissa Oliveira 👋🏽 Get in touch!
 
-<a target="_blank" href="https://larissa-portfolio.vercel.app/"> My-Portfolio
+<a target="_blank" href="https://larissa-portfolio.vercel.app/"> My-Portfolio 
 </a>
  
 
