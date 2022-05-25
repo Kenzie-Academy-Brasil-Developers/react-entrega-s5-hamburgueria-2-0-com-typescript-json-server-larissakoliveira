@@ -22,3 +22,15 @@ These tools were used to build this project:
 
 https://user-images.githubusercontent.com/82476805/170345442-dc8e4102-04fa-45c1-89e8-20c14f7d85ee.mp4
 
+### Author
+---
+<a href="https://larissa-portfolio.vercel.app/">
+[ <img style="border-radius: 50%;" src="" width="100px;" alt=""/>](url)
+ <br />
+ <sub><b>Larissa Oliveira</b></sub></a> <a href="https://www.linkedin.com/in/larissakoliveira/" title="Rocketseat">🚀</a>
+
+
+Feito com ❤️ por Larissa Oliveira 👋🏽 Entre em contato!
+
+[![Linkedin Badge](https://img.shields.io/badge/-Thiago-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tgmarinho/)](https://www.linkedin.com/in/larissakoliveira/) 
+[![Gmail Badge](https://img.shields.io/badge/-tgmarinho@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:oliveir5uwm@gmail.com)](mailto:oliveir5uwm@gmail.com)
